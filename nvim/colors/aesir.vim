@@ -1,4 +1,4 @@
-" Vim color file - hojberg
+" Vim color file - Aesir
 "
 " Inspired by Mustang, BusyBee and BadWolf
 "
@@ -15,7 +15,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "hojberg"
+let g:colors_name = "aesir"
 
 " Colors ---------- "
 let s:hc = {}
@@ -37,28 +37,13 @@ let s:hc.darkgravel     = ['242321', 235]
 let s:hc.blackgravel    = ['202020', 234]
 let s:hc.blackestgravel = ['141413', 232]
 
-" Very light green
 let s:hc.neon = ['d0ffc0', 193]
-
-" Mustang lime
 let s:hc.lime = ['b1d631', 148]
-
-" The star of the show comes straight from Made of Code.
 let s:hc.tardis = ['0a9dff', 39]
-
-" a slight greyish purple
 let s:hc.nebula = ['7e8aa2', 103]
-
-" A beautiful tan from Tomorrow Night.
 let s:hc.dirtyblonde = ['f4cf86', 222]
-
-" Delicious, chewy red from Made of Code for the poppiest highlights.
 let s:hc.taffy = ['ff2c4b', 196]
-
-" This one's from Mustang, not Florida!
 let s:hc.orange = ['ff9800', 208]
-
-" From busybee
 let s:hc.paleyellow = ['fce96b',11]
 let s:hc.straw = ['faf4c6', 230]
 
@@ -122,14 +107,14 @@ call s:HL('StatusLineNC', 'coal', 'bg', 'none')
 call s:HL('Directory', 'tardis', '', 'bold')
 call s:HL('Title', 'lime')
 
-call s:HL('ErrorMsg',   'taffy',       'bg', 'underline')
+call s:HL('ErrorMsg',   'taffy',       'bg', 'bold')
 call s:HL('MoreMsg',    'lime',   '',   'bold')
 call s:HL('ModeMsg',    'dirtyblonde', '',   'bold')
 call s:HL('Question',   'dirtyblonde', '',   'bold')
-call s:HL('WarningMsg', 'taffy',       'bg',   'underline')
+call s:HL('WarningMsg', 'taffy',       'bg',   'bold')
 
 " Gutter
-call s:HL('LineNr',     'mediumgravel')
+call s:HL('LineNr',     'deepgravel')
 call s:HL('SignColumn', '',             'coal')
 call s:HL('FoldColumn', 'mediumgravel', 'coal')
 
@@ -152,8 +137,8 @@ call s:HL('SpecialComment', 'brightgravel', 'bg', 'bold')
 call s:HL('String', 'lime')
 
 " Control flow stuff is nebula.
-call s:HL('Statement',   'orange', '', 'none')
-call s:HL('Keyword',     'orange', '', 'none')
+call s:HL('Statement',   'dirtyblonde', '', 'none')
+call s:HL('Keyword',     'straw', '', 'none')
 call s:HL('Conditional', 'orange', '', 'none')
 call s:HL('Operator',    'nebula', '', 'none')
 call s:HL('Label',       'nebula', '', 'none')
@@ -185,7 +170,7 @@ call s:HL('Typedef', 'orange', '', 'none')
 call s:HL('Exception', 'nebula', '', 'none')
 
 " Misc
-call s:HL('Error',  'taffy',   'bg', 'underline')
+call s:HL('Error',  'taffy',   'bg', 'bold')
 call s:HL('Debug',  'snow',   '',      'bold')
 call s:HL('Ignore', 'gravel', '',      '')
 
@@ -208,48 +193,19 @@ call s:HL('diffNewFile', 'coal', 'taffy', 'bold')
 call s:HL('diffLine', 'coal', 'orange', 'bold')
 call s:HL('diffSubname', 'orange', '', 'none')
 
-" Plugins ---------------------------------------------------------------------
+" Specifics ---------------------------------------------------------------------
 
-" CtrlP -----
-" the message when no match is found
-call s:HL('CtrlPNoEntries', 'snow', 'taffy', 'bold')
+" Coc -----
+call s:HL('CocErrorSign', 'taffy', '', 'none')
+call s:HL('CocWarningSign', 'orange', '', 'none')
+call s:HL('CocInfoSign', 'tardis', '', 'none')
 
-" the matched pattern
-call s:HL('CtrlPMatch', 'orange', 'bg', 'none')
-
-" the line prefix '>' in the match window
-call s:HL('CtrlPLinePre', 'deepgravel', 'bg', 'none')
-
-" the prompt’s base
-call s:HL('CtrlPPrtBase', 'deepgravel', 'bg', 'none')
-
-" the prompt’s text
-call s:HL('CtrlPPrtText', 'plain', 'bg', 'none')
-
-" the prompt’s cursor when moving over the text
-call s:HL('CtrlPPrtCursor', 'coal', 'tardis', 'bold')
-
-" 'prt' or 'win', also for 'regex'
-call s:HL('CtrlPMode1', 'coal', 'tardis', 'bold')
-
-" 'file' or 'path', also for the local working dir
-call s:HL('CtrlPMode2', 'coal', 'tardis', 'bold')
-
-" the scanning status
-call s:HL('CtrlPStats', 'coal', 'tardis', 'bold')
-
-" TODO: CtrlP extensions.
-" CtrlPTabExtra  : the part of each line that’s not matched against (Comment)
-" CtrlPqfLineCol : the line and column numbers in quickfix mode (|s:HL-Search|)
-" CtrlPUndoT     : the elapsed time in undo mode (|s:HL-Directory|)
-" CtrlPUndoBr    : the square brackets [] in undo mode (Comment)
-" CtrlPUndoNr    : the undo number inside [] in undo mode (String)
+" NerdTree -----
+call s:HL('NERDTreeDir', 'dirtyblonde', '', 'bold')
 
 " EasyMotion -----
 call s:HL('EasyMotionTarget', 'tardis',     'bg', 'bold')
 call s:HL('EasyMotionShade',  'deepgravel', 'bg')
-
-" Filetype Specific -----------------------------------------------------------
 
 " CSS -----
 call s:HL('cssColorProp', 'straw', '', 'none')
@@ -263,9 +219,6 @@ call s:HL('cssBraces', 'lightgravel', '', 'none')
 call s:HL('cssIdentifier', 'paleyellow', '', 'bold')
 call s:HL('cssClassName', 'paleyellow', '', 'none')
 
-" LessCSS -----
-call s:HL('lessVariable', 'orange')
-
 " Punctuation
 call s:HL('htmlTag',            'plain', 'bg', 'none')
 call s:HL('htmlEndTag',         'plain', 'bg', 'none')
@@ -275,34 +228,12 @@ call s:HL('htmlSpecialChar',    'lime',   '', 'none')
 call s:HL('htmlArg',            'nebula', '', 'none')
 call s:HL('htmlLink',           'tardis', '', 'underline')
 
-" Markdown -----
-call s:HL('markdownHeadingRule', 'lightgravel', '', 'bold')
-call s:HL('markdownHeadingDelimiter', 'lightgravel', '', 'bold')
-call s:HL('markdownOrderedListMarker', 'lightgravel', '', 'bold')
-call s:HL('markdownListMarker', 'lightgravel', '', 'bold')
-call s:HL('markdownItalic', 'snow', '', 'bold')
-call s:HL('markdownBold', 'snow', '', 'bold')
-call s:HL('markdownH1', 'orange', '', 'bold')
-call s:HL('markdownH2', 'lime', '', 'bold')
-call s:HL('markdownH3', 'lime', '', 'none')
-call s:HL('markdownH4', 'lime', '', 'none')
-call s:HL('markdownH5', 'lime', '', 'none')
-call s:HL('markdownH6', 'lime', '', 'none')
-call s:HL('markdownLinkText', 'straw', '', 'underline')
-call s:HL('markdownIdDeclaration', 'straw')
-call s:HL('markdownAutomaticLink', 'straw', '', 'bold')
-call s:HL('markdownUrl', 'straw', '', 'bold')
-call s:HL('markdownUrldelimiter', 'lightgravel', '', 'bold')
-call s:HL('markdownLinkDelimiter', 'lightgravel', '', 'bold')
-call s:HL('markdownLinkTextDelimiter', 'lightgravel', '', 'bold')
-call s:HL('markdownCodeDelimiter', 'dirtyblonde', '', 'bold')
-call s:HL('markdownCode', 'dirtyblonde', '', 'none')
-call s:HL('markdownCodeBlock', 'dirtyblonde', '', 'none')
+" Markdown --------------------------------------------------------------------
 
-" MySQL -----
+" MySQL -----------------------------------------------------------------------
 call s:HL('mysqlSpecial', 'taffy', '', 'bold')
 
-" Vim -----
+" Vim -------------------------------------------------------------------------
 call s:HL('VimCommentTitle',  'lightgravel',  '', 'bold')
 call s:HL('VimMapMod',        'taffy',        '', 'none')
 call s:HL('VimMapModKey',     'taffy',        '', 'none')
@@ -327,8 +258,17 @@ call s:HL('javaScriptFunctionKey', 'straw')
 call s:HL('javaScriptFuncDef', 'straw', '' , 'bold')
 call s:HL('javaScriptFuncArg', 'dirtyblonde')
 
-" TypeScript  ------------------------------------------------------------------
+" Pandoc  -------------------------------------------------------------------
+call s:HL('pandocAtxStart', 'mediumgravel')
+call s:HL('pandocAtxHeader', 'tardis', '', 'bold')
 
+" Gitgutter -------------------------------------------------------------------
+call s:HL('GitGutterAdd', 'lime')
+call s:HL('GitGutterChange', 'orange')
+call s:HL('GitGutterDelete', 'taffy')
+call s:HL('GitGutterChangeDelete', 'taffy')
+
+" TypeScript  ------------------------------------------------------------------
 call s:HL('typescriptFuncKeyword', 'paleyellow', '', 'bold')
 call s:HL('typescriptFuncName', 'straw', '', 'bold')
 call s:HL('typescriptFuncArg', 'dirtyblonde')
@@ -343,9 +283,6 @@ call s:HL('xmlString','lime')
 call s:HL('xmlTagName', 'paleyellow')
 call s:HL('xmlStartTag', 'paleyellow')
 call s:HL('xmlEndTag', 'paleyellow')
-
-" Swift =----------------------------------------------------------------------
-call s:HL('swiftKeywords', 'nebula')
 
 " Haskell =----------------------------------------------------------------------
 call s:HL('haskellType', 'nebula')
