@@ -3,3 +3,11 @@
 yarn
 coc
 .mono
+
+fish/completions
+fish/fishd*
+fish/functions
+
+configstore
+direnv
+karabiner/automatic_backups
