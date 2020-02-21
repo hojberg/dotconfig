@@ -56,3 +56,5 @@ else
         start_agent
     end  
 end
+
+starship init fish | source
