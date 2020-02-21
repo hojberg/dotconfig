@@ -6,3 +6,7 @@ add_newline = false
 # Set prompt character
 [character]
 symbol = "➜ "
+
+[directory]
+truncation_length = 3
+truncate_to_repo = false

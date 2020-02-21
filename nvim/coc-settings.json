@@ -3,6 +3,7 @@
   "suggest.maxCompleteItemCount": 20,
   "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "graphql"],
   "eslint.autoFixOnSave": true,
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "typescript", "typescriptreact", "javascriptreact", "graphql"],
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": ""

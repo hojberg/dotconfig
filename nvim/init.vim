@@ -156,6 +156,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'rizzatti/dash.vim'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
 " Docs / Markdown
 Plug 'godlygeek/tabular'
