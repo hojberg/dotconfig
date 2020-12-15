@@ -58,3 +58,5 @@ else
 end
 
 starship init fish | source
+
+echo -e "\nsource "(brew --prefix asdf)"/asdf.fish" >> ~/.config/fish/config.fish
