@@ -6,9 +6,11 @@ coc
 
 fish/completions
 fish/fishd*
-fish/functions
+fish/functions/*
+fish/fish_variables
 
 configstore
 direnv
 karabiner/automatic_backups
 gh
+nvim/.netrwhist
