@@ -1,7 +1,6 @@
 # status --is-interactive; and source (rbenv init -|psub)
 
 set -x EDITOR nvim
-set -x DATABASE_URL postgres:///talentbird
 
 set -x ANDROID_HOME {$HOME}/Library/Android/sdk
 set -x PATH $PATH {$ANDROID_HOME}/tools
