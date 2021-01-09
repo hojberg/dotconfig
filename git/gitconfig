@@ -1,0 +1,15 @@
+[core]
+	editor = vim
+        
+[user]
+	email = r.hackr@gmail.com
+	name = Simon Højberg
+
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+
+[alias]
+  st = status
+  unstage = reset

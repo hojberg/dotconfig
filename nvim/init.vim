@@ -181,6 +181,9 @@ Plug 'arcticicestudio/nord-vim'
 
 " Language Server, linting, formatting, completion
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 
 " Has to be the very last one
 Plug 'ryanoasis/vim-devicons'
