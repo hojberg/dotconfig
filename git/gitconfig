@@ -13,3 +13,7 @@
 [alias]
   st = status
   unstage = reset
+  undocommit = reset --soft HEAD~1
+
+[init]
+	defaultBranch = main
