@@ -11,3 +11,5 @@ brew 'yarn' # vim's CoC
 # Languages
 tap 'unisonweb/unison'
 brew 'unison-language'
+brew 'elm'
+brew 'elm-format'
