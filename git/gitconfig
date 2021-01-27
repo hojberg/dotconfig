@@ -14,6 +14,7 @@
   st = status
   unstage = reset
   undocommit = reset --soft HEAD~1
+  hist = "!git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 
 [init]
 	defaultBranch = main
