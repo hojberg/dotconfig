@@ -1,5 +1,6 @@
 # Env setup
 
+brew 'git'
 brew 'nvim'
 brew 'fish'
 brew 'tmux'
@@ -7,6 +8,9 @@ brew 'starship'
 brew 'rg'
 brew 'fzf'
 brew 'yarn' # vim's CoC
+brew 'http-server'
+brew 'gh'
+brew 'httpie'
 
 # Languages
 tap 'unisonweb/unison'
