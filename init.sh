@@ -5,4 +5,5 @@ ln -s ~/.config/tmux/init.sh ~/init-tmux
 ln -s ~/.config/git/gitconfig ~/.gitconfig
 
 # npm deps
-npm install -g @elm-tooling/elm-language-server
+npm i -g @elm-tooling/elm-language-server
+npm i -g purescript spago purescript-language-server

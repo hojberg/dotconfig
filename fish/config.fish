@@ -9,12 +9,16 @@ set -x PATH {$PATH} {$ANDROID_HOME}/platform-tools
 set -x FZF_DEFAULT_COMMAND "rg --files"
 set fish_greeting ""
 
-alias l "ls -las"
+# alias l "ls -las"
+alias l "exa -la"
 alias t "tmux"
+alias g "git"
+alias r "ranger"
 alias vim "nvim"
 alias v "nvim"
 alias vv "nvim ."
 alias be "bundle exec"
+alias f "fzf --height=40% --layout=reverse --border"
 
 # content has to be in .config/fish/config.fish
 # if it does not exist, create the file
