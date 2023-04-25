@@ -101,7 +101,7 @@ call s:HL('VisualNOS', 'snow',  'tardis')
 call s:HL('Search',    'coal', 'tardis', 'bold')
 call s:HL('IncSearch', 'coal', 'tardis', 'bold')
 call s:HL('Underlined', 'fg', '', 'underline')
-call s:HL('StatusLine',   'coal', 'lime', 'bold')
+call s:HL('StatusLine',   'snow', 'bg', 'bold')
 call s:HL('StatusLineNC', 'coal', 'bg', 'none')
 
 call s:HL('Directory', 'tardis', '', 'bold')

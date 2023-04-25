@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf 
 ln -s ~/.config/tmux/init.sh ~/init-tmux
 ln -s ~/.config/git/gitconfig ~/.gitconfig

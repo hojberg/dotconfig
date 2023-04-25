@@ -5,7 +5,7 @@ add_newline = false
 
 # Set prompt character
 [character]
-symbol = "➜ "
+# symbol = "➜ "
 
 [directory]
 truncation_length = 3
