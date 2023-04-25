@@ -323,4 +323,4 @@ set t_8f=^[[38;2;%lu;%lu;%lum
 set background=dark
 
 "colorscheme catppuccin-macchiato
-colorscheme aesir
+colorscheme sally
