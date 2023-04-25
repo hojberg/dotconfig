@@ -1,4 +1,4 @@
-" Basic ------------------------------------ "
+":CocInstall coc-prettier Basic ------------------------------------ "
 set nocompatible
 set number
 set history=1000
@@ -86,12 +86,12 @@ nnoremap <C-l> <C-w>l
 
 " Files ------------------------------------ "
 autocmd BufNewFile,BufRead *.ejs set filetype=html.js
+autocmd BufNewFile,BufRead *.njk set filetype=html.js
 autocmd BufNewFile,BufRead *.jst set filetype=html.js
 autocmd BufNewFile,BufRead *.handlebars set filetype=html.js
 autocmd BufNewFile,BufRead *.hbs set filetype=html.js
 autocmd BufNewFile,BufRead *.less set filetype=less
 autocmd BufNewFile,BufRead {Guardfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set filetype=ruby
-autocmd BufNewFile,BufRead *.json set filetype=javascript
 autocmd BufNewFile,BufRead *.clj,*cljs,*.wisp set filetype=clojure
 autocmd BufNewFile,BufRead *.js set filetype=javascript.jsx
 autocmd BufNewFile,BufRead *.elm set tabstop=4
@@ -112,50 +112,47 @@ set noswapfile " no swap files
 
 set completeopt=menu,menuone,preview,noselect,noinsert
 
-
 " vim-plug package manager ------------------- "
 call plug#begin('~/.local/share/nvim/plugged')
+
+" Utilities
+Plug 'nvim-lua/plenary.nvim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'regedarek/zoomwin'
+Plug 'eugen0329/vim-esearch'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " JavaScript / TypeScript
 Plug 'moll/vim-node'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'ianks/vim-tsx'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'othree/html5.vim'
+Plug 'prisma/vim-prisma'
 
-" Haskell
+" Various languages
 Plug 'neovimhaskell/haskell-vim'
-
-" Elm
 Plug 'ElmCast/elm-vim'
+Plug 'purescript-contrib/purescript-vim'
+Plug '~/.local/share/nvim/plugged/unison'
+Plug 'idris-hackers/idris-vim'
+Plug 'jparise/vim-graphql'
 
-" Reason
-Plug 'reasonml-editor/vim-reason-plus'
+" Tmux
+Plug 'benmills/vimux'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
-" Tmux
-Plug 'benmills/vimux'
-Plug 'christoomey/vim-tmux-navigator'
-
-" Utilities
-Plug 'brooth/far.vim'
-Plug 'janko-m/vim-test'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
-Plug 'regedarek/zoomwin'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'rizzatti/dash.vim'
 
 " Docs / Markdown
 Plug 'godlygeek/tabular'
@@ -164,59 +161,61 @@ Plug 'junegunn/goyo.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
-" Other
-Plug 'dansomething/vim-hackernews'
-Plug 'idris-hackers/idris-vim'
-Plug 'jparise/vim-graphql'
-
 " Theme/UI
 Plug 'ayu-theme/ayu-vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'rakr/vim-one'
-" Plug 'Yggdroot/indentLine'
-Plug 'itchyny/lightline.vim'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'arcticicestudio/nord-vim'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " Language Server, linting, formatting, completion
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 
-" Has to be the very last one
-Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+
+Plug 'dag/vim-fish'
 
 call plug#end()
 
 " Plugin configuration ------------------------------------ "
 
-" = Coc.nvim
+" :lua require('statusline')
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Telescope
+:lua require("telescope").load_extension "file_browser"
+nnoremap <leader>. <cmd>Telescope find_files<cr>
+
+" nvim tree
+
+:lua require("nvim-tree").setup()
+
+" = Coc.nvim
 
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-"Close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+\ coc#pum#visible() ? coc#pum#next(1):
+\ <SID>check_back_space() ? "\<Tab>" :
+\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
 
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
-" nmap <silent> <leader>cl <Plug>(coc-codelens-action)
+nmap <silent> <leader>cn :call CocAction('diagnosticNext')<CR>
+nmap <silent> <leader>cp :call CocAction('diagnosticPrevious')<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -229,18 +228,14 @@ function! s:show_documentation()
   endif
 endfunction
 
-" = indentLine
-" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+nnoremap <leader>n :NvimTreeToggle<CR>
 
-" = vim-devicons
-let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
+" = esearch
+nmap <leader>a <plug>(esearch)
 
 " = vim-pandoc
 let g:pandoc#modules#disabled = ['folding']
 let g:pandoc#keyboard#enabled_submodules = ["lists", "references", "styles", "sections"]
-
 
 " = vim-pandoc-syntax
 let g:pandoc#syntax#conceal#use = 0
@@ -267,22 +262,7 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 let g:haskell_classic_highlighting = 1
 
-" elm-vim
-" let g:elm_format_autosave = 1
-" let g:elm_setup_keybindings = 0
-
-au FileType elm nmap <leader>m <Plug>(elm-make)
-au FileType elm nmap <leader>M <Plug>(elm-make-main)
-au FileType elm nmap <leader>t <Plug>(elm-test)
-au FileType elm nmap <leader>r <Plug>(elm-repl)
-au FileType elm nmap <leader>e <Plug>(elm-error-detail)
-au FileType elm nmap <leader>d <Plug>(elm-show-docs)
-au FileType elm nmap <leader>D <Plug>(elm-browse-docs)
-
 let g:elm_syntastic_show_warnings = 1
-
-" NERDTree
-map <leader>n :NERDTreeToggle<cr>
 
 " ZoomWin
 nnoremap <leader>z :ZoomWin<cr>
@@ -295,86 +275,6 @@ let g:gitgutter_sign_removed_first_line = '|'
 let g:gitgutter_sign_modified_removed = '|'
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
-
-" = lightline
-let g:lightline = {
-  \ 'component': {
-  \   'lineinfo': ' %3l:%-2v',
-  \ },
-  \ 'component_function': {
-  \   'readonly': 'LightlineReadonly',
-  \   'fugitive': 'LightlineFugitive',
-  \   'filetype': 'MyFiletype',
-  \   'fileformat': 'MyFileformat',
-  \ },
-  \ 'separator': { 'left': '', 'right': '' },
-  \ 'subseparator': { 'left': '', 'right': '' }
-  \ }
-function! LightlineReadonly()
-  return &readonly ? '' : ''
-endfunction
-function! LightlineFugitive()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ''.branch : ''
-  endif
-  return ''
-endfunction
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() . ' ': 'no ft') : ''
-endfunction
-function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol() . ' ') : ''
-endfunction
-
-" Ripgrep
-nnoremap <leader>a :Find<space>
-
-set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-
-" fzf
-nnoremap <leader>. :FZF<cr>
-
-let $FZF_DEFAULT_COMMAND='rg --files'
-
-let g:fzf_layout = { 'down': '~40%' }
-
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" --column: Show column number
-" --line-number: Show line number
-" --no-heading: Do not show file headings in results
-" --fixed-strings: Search term as a literal string
-" --ignore-case: Case insensitive search
-" --hidden: Search hidden files and folders
-" --follow: Follow symlinks
-" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-" --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 " Small functions ----------------------------- "
 
@@ -389,24 +289,6 @@ function! RenameFile()
     endif
 endfunction
 nnoremap <leader>rn :call RenameFile()<cr>
-
-function! RunJSTests()
-  if match(expand("%"), '\(._spec.js\|_test.js\|-test.js\)$') != -1
-    let t:test_file = expand("%")
-  endif
-
-  if exists("t:test_file")
-    let cmd = 'yarn test ' . t:test_file
-    call VimuxRunCommand(cmd)
-  endif
-endfunction
-
-nnoremap <Leader>t :call RunJSTests()<CR>
-
-function! RunAllJSTests()
-  call VimuxRunCommand('yarn test')
-endfunction
-nnoremap <Leader>T :call RunAllJSTests()<CR>
 
 function! Focus()
   exec ':Limelight'
@@ -434,29 +316,11 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-function! ToggleCheckList()
-  let save_cursor = getcurpos()
-  let curr_line = getline('.')
-  let curr_line_nr = line('.')
-  let state = matchstr(curr_line, '^\s*\W\s\[\zs.*]\ze')
-  echo state
-  if state ==# 'x]'
-      call setline(curr_line_nr, substitute(curr_line, 'x]', ' ]', ''))
-  elseif state ==# '-]'
-      call setline(curr_line_nr, substitute(curr_line, '-]', 'x]', ''))
-  elseif state ==# ' ]'
-      call setline(curr_line_nr, substitute(curr_line, ' ]', '-]', ''))
-  endif
-  call setpos('.', save_cursor)
-endfunction
-
-nnoremap <Leader>x :call ToggleCheckList()<CR>
-
 " tmux support
 set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
 
 set background=dark
 
+"colorscheme catppuccin-macchiato
 colorscheme aesir
-" colorscheme nord

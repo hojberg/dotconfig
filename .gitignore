@@ -4,10 +4,19 @@ yarn
 coc
 .mono
 
+fish/unison.fish
 fish/completions
 fish/fishd*
 fish/functions/*
 fish/fish_variables
+
+raycast/
+
+Autodesk
+
+iterm2
+
+nvim/spell
 
 configstore
 direnv

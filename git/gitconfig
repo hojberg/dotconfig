@@ -1,6 +1,6 @@
 [core]
 	editor = nvim
-	pager = delta
+	excludesfile = ~/.config/git/ignore
         
 [user]
 	email = r.hackr@gmail.com
@@ -13,9 +13,11 @@
 
 [alias]
   st = status
+  sw = switch
   unstage = reset
   undocommit = reset --soft HEAD~1
-  hist = "!git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+  branches = "!git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:brightred)%(refname:short)%(color:reset) - %(color:white)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:white)%(committerdate:relative)%(color:reset))'"
+  h = "branches"
   smush = commit --amend --no-edit
 
 [init]
@@ -23,7 +25,4 @@
 
 [pull]
 	rebase = false
-
-[delta]
-  syntax-theme = Nord
-  side-by-side = true
+	ff = only
